@@ -1,11 +1,14 @@
 from xmlrpc.server import SimpleXMLRPCServer
 from config.settings import Settings
 from modules.RequestHandler import RequestHandler
+from modules.XmlHandler import XmlHandler
 
 settings = Settings()
+xml_handler = XmlHandler("./data/database.xml")
 
 def receive_note(noteObj):
-#    print(f"{noteObj["name"]} - {noteObj["topic"]} - {noteObj["text"]} - {noteObj["timestamp"]}")
+    print(f"{noteObj["name"]} - {noteObj["topic"]} - {noteObj["text"]} - {noteObj["timestamp"]}")
+    xml_handler.create_new_entry(noteObj)
     return noteObj["name"]
 
 def notify_server_start():

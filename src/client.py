@@ -26,7 +26,7 @@ def generate_note() -> dict[str, str]:
         "topic":        note_topic,
         "name":         note_name,
         "text":         note_text,
-        "timestamp":    datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        "timestamp":    datetime.now().strftime("%m/%d/%Y %H:%M:%S")
     }
 
 def main():
