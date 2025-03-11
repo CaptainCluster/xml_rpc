@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-class ETDataHandler:
+class ETWriteHandler:
     def __init__(self, note_dict: dict[str, str]) -> None:
         self.elem_topic = ET.Element("topic")
         self.elem_topic.set("name", note_dict["topic"])
@@ -38,7 +38,6 @@ class ETDataHandler:
             if topic.attrib["name"] != note_dict["topic"]:
                 continue
             for note in topic.findall("note"):
-                print(note.attrib["name"])
                 if note.attrib["name"] == note_dict["name"]:
                     return True
         return False
