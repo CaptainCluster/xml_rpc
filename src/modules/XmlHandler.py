@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from modules.ETDataHandler import ETDataHandler
 
-class XmlHandler:
+class XMLHandler:
     def __init__(self, filename: str):
         self.filename = filename
         self.tree = ET.parse(self.filename)
@@ -10,11 +10,11 @@ class XmlHandler:
     def create_new_entry(self, noteDict):
         try:
             ET_data_handler = ETDataHandler(noteDict)
-            topic_exists = self.check_topic_exists(noteDict)
+            topic_exists = ET_data_handler.check_topic_exists(self.root, noteDict)
             note_exists = False
 
             if topic_exists:
-                note_exists = self.check_note_exists(noteDict)
+                note_exists = ET_data_handler.check_note_exists(self.root, noteDict)
 
             if topic_exists and note_exists:
                 topic = ET_data_handler.find_topic(self.root, noteDict)
@@ -39,20 +39,3 @@ class XmlHandler:
 
         except Exception as exception:
             print(f"error detected - {exception}")
-
-
-    def check_topic_exists(self, note_dict) -> bool:
-        for topic in self.root.findall("topic"):
-            if topic.attrib["name"] == note_dict["topic"]:
-                return True
-        return False
-
-    def check_note_exists(self, note_dict) -> bool:
-        for topic in self.root.findall("topic"):
-            if topic.attrib["name"] != note_dict["topic"]:
-                continue
-            for note in topic.findall("note"):
-                print(note.attrib["name"])
-                if note.attrib["name"] == note_dict["name"]:
-                    return True
-        return False

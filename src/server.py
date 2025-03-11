@@ -1,12 +1,12 @@
 from xmlrpc.server import SimpleXMLRPCServer
 from config.settings import Settings
 from modules.RequestHandler import RequestHandler
-from modules.XmlHandler import XmlHandler
+from modules.XmlHandler import XMLHandler
 
 import threading
 
 settings = Settings()
-xml_handler = XmlHandler(settings.DB_FILENAME)
+xml_handler = XMLHandler(settings.DB_FILENAME)
 
 def receive_note(note_dict):
     thread = threading.Thread(

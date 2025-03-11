@@ -26,3 +26,19 @@ class ETDataHandler:
         for note in topic:
             if note.attrib["name"] == note_dict["name"]:
                 return note
+
+    def check_topic_exists(self, root, note_dict) -> bool:
+        for topic in root.findall("topic"):
+            if topic.attrib["name"] == note_dict["topic"]:
+                return True
+        return False
+
+    def check_note_exists(self, root, note_dict) -> bool:
+        for topic in root.findall("topic"):
+            if topic.attrib["name"] != note_dict["topic"]:
+                continue
+            for note in topic.findall("note"):
+                print(note.attrib["name"])
+                if note.attrib["name"] == note_dict["name"]:
+                    return True
+        return False
