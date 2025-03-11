@@ -5,4 +5,4 @@ class Settings:
     def __init__(self) -> None:
         self.PORT: int  = 8080
         self.HOST: str  = "localhost"
-        self.DB_FILENAME: str = "database.xml"
+        self.DB_FILENAME: str = "./data/database.xml"

@@ -4,7 +4,7 @@ from modules.RequestHandler import RequestHandler
 from modules.XmlHandler import XmlHandler
 
 settings = Settings()
-xml_handler = XmlHandler("./data/database.xml")
+xml_handler = XmlHandler(settings.DB_FILENAME)
 
 def receive_note(noteObj):
     print(f"{noteObj["name"]} - {noteObj["topic"]} - {noteObj["text"]} - {noteObj["timestamp"]}")
