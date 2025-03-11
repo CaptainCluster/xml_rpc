@@ -3,16 +3,23 @@ from config.settings import Settings
 from modules.RequestHandler import RequestHandler
 from modules.XmlHandler import XmlHandler
 
+import threading
+
 settings = Settings()
 xml_handler = XmlHandler(settings.DB_FILENAME)
 
-def receive_note(noteObj):
-    print(f"{noteObj["name"]} - {noteObj["topic"]} - {noteObj["text"]} - {noteObj["timestamp"]}")
-    xml_handler.create_new_entry(noteObj)
-    return noteObj["name"]
+def receive_note(note_dict):
+    thread = threading.Thread(
+            target=xml_handler.create_new_entry,
+            args=[note_dict])
+    thread.start()
+    print(f"{note_dict["name"]} - {note_dict["topic"]} - {note_dict["text"]} - {note_dict["timestamp"]}")
+    return note_dict["name"]
 
 def notify_server_start():
     print(f"XML-rpc is serving on port {settings.PORT}.")
+
+
 
 def main():
     server = SimpleXMLRPCServer((settings.HOST, settings.PORT), requestHandler=RequestHandler)
