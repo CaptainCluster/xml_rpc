@@ -1,14 +1,15 @@
 from xmlrpc.server import SimpleXMLRPCServer
 from config.settings import Settings
 from modules.RequestHandler import RequestHandler
+from modules.WikipediaHandler import WikipediaHandler
 from modules.XmlHandler import XMLHandler
-
 import threading
 
 lock = threading.Lock()
 
 settings = Settings()
 xml_handler = XMLHandler(settings.DB_FILENAME)
+wikipedia_handler = WikipediaHandler()
 
 def write_note(note_dict):
     thread = threading.Thread(
@@ -21,7 +22,7 @@ def write_note(note_dict):
         Topic: {note_dict["topic"]}
         Text content: {note_dict["text"]}
         Timestamp: {note_dict["timestamp"]}""")
-    return note_dict["name"]
+    return "Success"
 
 def read_note(note_topic):
     results = []
@@ -41,6 +42,7 @@ def main():
     server = SimpleXMLRPCServer((settings.HOST, settings.PORT), requestHandler=RequestHandler)
     server.register_function(write_note, "write_note")
     server.register_function(read_note, "read_note")
+    server.register_function(wikipedia_handler.search_wikipedia, "search_wikipedia")
     notify_server_start()
     server.serve_forever()
 
