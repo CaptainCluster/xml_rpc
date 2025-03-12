@@ -1,4 +1,4 @@
-Here are the sources I used to construct my application
+Here are the sources I used to construct my application.
 
 [Python docs - xmlrpc.server](https://docs.python.org/3/library/xmlrpc.server.html#module-xmlrpc.server)
 
@@ -11,3 +11,5 @@ Here are the sources I used to construct my application
 [GeeksForGeeks - Multithreading](https://www.geeksforgeeks.org/multithreading-python-set-1/)
 
 [Thread locking](https://www.pythontutorial.net/python-concurrency/python-threading-lock/)
+
+[Wikipedia Python package](https://pypi.org/project/wikipedia/)
