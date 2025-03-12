@@ -13,3 +13,5 @@ Here are the sources I used to construct my application.
 [Thread locking](https://www.pythontutorial.net/python-concurrency/python-threading-lock/)
 
 [Wikipedia Python package](https://pypi.org/project/wikipedia/)
+
+[StackOverflow - Creating multiple threads for testing](https://stackoverflow.com/questions/18602034/python-parallel-threads)

@@ -3,6 +3,9 @@ from modules.ETWriteHandler import ETWriteHandler
 from modules.ETReadHander   import ETReadHandler
 
 class XMLHandler:
+    """This class is responsible for gathering functionality that handles
+    XML elements and data.
+    """
     def __init__(self, filename: str):
         self.filename = filename
         self.tree = ET.parse(self.filename)

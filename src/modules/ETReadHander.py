@@ -1,6 +1,8 @@
 import xml.etree.ElementTree as ET
 
 class ETReadHandler:
+    """ETReadHandler ensures data can be read from the XML database file.
+    """
     def __init__(self, topic) -> None:
         self.topic = topic
 

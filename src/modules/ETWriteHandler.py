@@ -1,6 +1,9 @@
 import xml.etree.ElementTree as ET
 
 class ETWriteHandler:
+    """ETWriteHandler ensures the application has the capabilities
+    to write new notes into the XML database file.
+    """
     def __init__(self, note_dict: dict[str, str]) -> None:
         self.elem_topic = ET.Element("topic")
         self.elem_topic.set("name", note_dict["topic"])

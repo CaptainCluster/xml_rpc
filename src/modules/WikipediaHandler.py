@@ -2,7 +2,16 @@ import wikipedia
 import requests
 
 class WikipediaHandler:
-    
+    """WikipediaHandler handles the reception of data from Wikipedia. It uses the Python
+    wikipedia library to receive precise search terms. They will be sent to the client,
+    and one of them is chosen. The chosen term will then be used to search for a
+    Wikipedia article link and a summary.
+
+    Because the Python wikipedia library did not appear robust enough during the
+    creation of this assignment, I chose to combine it with the recommanded requests
+    library.
+    """
+
     def search_wikipedia(self, wiki_topic, results, lock):
         with lock:
             try:
@@ -12,8 +21,8 @@ class WikipediaHandler:
                 print(f"Exception at 'search_wikipedia' in WikipediaHandler: {exception}")
 
     def fetch_summary(self, wiki_article_name, results, lock):
-        with lock: 
-            # The summary fetching is error-prone and thus needs good error handling 
+        with lock:
+            # The summary fetching is error-prone and thus needs good error handling
             wikipedia_summary = None
             try:
                 wikipedia_summary = wikipedia.summary(wiki_article_name)
@@ -40,7 +49,7 @@ class WikipediaHandler:
                     if proposed_url == url and wikipedia_summary:
                         results.append({
                                 "article_url":  proposed_url,
-                                "summary":      wikipedia_summary 
+                                "summary":      wikipedia_summary
                                 })
                         return
                     if proposed_url == url:
@@ -61,5 +70,4 @@ class WikipediaHandler:
         for i in range(0, len(article_list)-1):
             if article_list[i] == " ":
                 article_list[i] = '_'
-        return "".join(article_list) 
-
+        return "".join(article_list)
