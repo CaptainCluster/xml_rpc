@@ -120,7 +120,12 @@ def request_wikipedia(proxy):
         print(f"Error in function 'request_wikipedia': {exception}")
 
 def read_xml(xml_content):
-    print("hi")
+    root = ET.fromstring(f"{xml_content}")
+    for note in root:
+        print(note.tag, note.attrib["name"])
+        for elem_child in note:
+            print(f"{elem_child.tag}: {elem_child.text}")
+    
 
 
 def main():
@@ -136,7 +141,7 @@ def main():
                 print(f"Server response: {result}")
             case 2:
                 result = request_read(proxy)
-                print(f"Found the following content: {result}")
+                read_xml(result)
             case 3:
                 result = request_wikipedia(proxy)
             case _:

@@ -31,7 +31,10 @@ def read_note(note_topic):
             args=[note_topic, results, lock])
     thread.start()
     thread.join()
-    return results
+    
+    if len(results) == 0:
+        return ""
+    return results[0]
 
 def search_wikipedia(wiki_topic):
     results = []
