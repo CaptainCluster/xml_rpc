@@ -1,3 +1,16 @@
+Dependencies
+---
+
+The application has two dependencies that are required in order to use it.
+
+1) wikipedia
+2) requests
+
+Both packages can be installed with the Python package manager (pip).
+
+Sources
+---
+
 Here are the sources I used to construct my application.
 
 [Python docs - xmlrpc.server](https://docs.python.org/3/library/xmlrpc.server.html#module-xmlrpc.server)
